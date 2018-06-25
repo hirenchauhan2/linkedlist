@@ -3,12 +3,13 @@ package main
 import (
 	"fmt"
 
+	"github.com/hirenchauhan2/linkedlist/doubly"
 	"github.com/hirenchauhan2/linkedlist/singly"
 )
 
 func main() {
 	singlyLinkedlistDemo()
-	// doublyLinkedlistDemo()
+	doublyLinkedlistDemo()
 	// singlyCircularLinkedlistDemo()
 	// doublyCircularLinkedlistDemo()
 }
@@ -170,4 +171,166 @@ func singlyLinkedlistDemo() {
 	singly.TraverseList(head)
 	fmt.Println("----------------------------------------")
 
+}
+
+func doublyLinkedlistDemo() {
+	fmt.Println("----------------------------------------")
+	fmt.Println("\tDoubly Linkedlist Demo")
+	fmt.Println("----------------------------------------")
+
+	fmt.Println("Create a new List")
+	fmt.Println("----------------------------------------")
+
+	// create a head node
+	head := doubly.Node{
+		Next: nil,
+		Prev: nil,
+	}
+	fmt.Println("Adding elements at begining")
+	fmt.Println("----------------------------------------")
+
+	// add a node at front
+	fmt.Println("Add => 10")
+	doubly.InsertFront(&head, 10)
+	fmt.Println("Add => 8")
+	doubly.InsertFront(&head, 8)
+	fmt.Println("Add => 6")
+	doubly.InsertFront(&head, 6)
+	fmt.Println("Add => 4")
+	doubly.InsertFront(&head, 4)
+	fmt.Println("Add => 2")
+	doubly.InsertFront(&head, 2)
+	fmt.Println("Add => 0")
+	doubly.InsertFront(&head, 0)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	// traverse a list and print elements
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding elements at end")
+	fmt.Println("----------------------------------------")
+	// add node to last
+	fmt.Println("Add => 12")
+	doubly.InsertEnd(&head, 12)
+	fmt.Println("Add => 14")
+	doubly.InsertEnd(&head, 14)
+	fmt.Println("Add => 16")
+	doubly.InsertEnd(&head, 16)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+
+	// traverse a list and print elements
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element before 14")
+	inserted, err := doubly.InsertBefore(&head, 13, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 13, "before 14")
+	} else {
+		fmt.Println("Not Inserted")
+		fmt.Println(err)
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element after 14")
+	inserted, err = doubly.InsertAfter(&head, 15, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 15, "after 14")
+	} else {
+		fmt.Println("Not Inserted")
+		fmt.Println(err)
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Searching elements")
+	fmt.Println("----------------------------------------")
+
+	fmt.Printf("Search 15: ")
+	found, nodeData := doubly.Find(head, 15)
+	if found {
+		fmt.Printf("Found %d\n", nodeData)
+	} else {
+		fmt.Printf("Not found!\n")
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from front: ")
+	fmt.Println("----------------------------------------")
+
+	deleted, data := doubly.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	deleted, data = doubly.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from end: ")
+	fmt.Println("----------------------------------------")
+	deleted, data = doubly.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	deleted, data = doubly.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting the elements randomly: ")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = doubly.Delete(&head, 12)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = doubly.Delete(&head, 12)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
 }
