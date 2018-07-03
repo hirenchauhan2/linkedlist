@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 
+	"github.com/hirenchauhan2/linkedlist/circular/singlycircular"
 	"github.com/hirenchauhan2/linkedlist/doubly"
 	"github.com/hirenchauhan2/linkedlist/singly"
 )
 
 func main() {
-	singlyLinkedlistDemo()
-	doublyLinkedlistDemo()
-	// singlyCircularLinkedlistDemo()
+	// singlyLinkedlistDemo()
+	// doublyLinkedlistDemo()
+	singlyCircularLinkedlistDemo()
 	// doublyCircularLinkedlistDemo()
 }
 
@@ -332,5 +333,172 @@ func doublyLinkedlistDemo() {
 	fmt.Println("Traversing the list...")
 	fmt.Println("----------------------------------------")
 	doubly.TraverseList(head)
+	fmt.Println("----------------------------------------")
+}
+
+// singlyCircularLikedlistDemo demonstrate the Singly Circular linked list
+func singlyCircularLinkedlistDemo() {
+	fmt.Println("----------------------------------------")
+	fmt.Println("\tSingly Circular Linkedlist Demo")
+	fmt.Println("----------------------------------------")
+
+	fmt.Println("Create a new Singly Circular Linkedlist")
+	fmt.Println("----------------------------------------")
+
+	// create a head node
+	head := singlycircular.Node{
+		Next: nil,
+	}
+
+	fmt.Println("Adding elements at begining")
+	fmt.Println("----------------------------------------")
+
+	// add a node at front
+	fmt.Println("Add => 10")
+	singlycircular.InsertFront(&head, 10)
+	fmt.Println("Add => 8")
+	singlycircular.InsertFront(&head, 8)
+	fmt.Println("Add => 6")
+	singlycircular.InsertFront(&head, 6)
+	fmt.Println("Add => 4")
+	singlycircular.InsertFront(&head, 4)
+	fmt.Println("Add => 2")
+	singlycircular.InsertFront(&head, 2)
+	fmt.Println("Add => 0")
+	singlycircular.InsertFront(&head, 0)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	// traverse a list and print elements
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding elements at end")
+	fmt.Println("----------------------------------------")
+	// add node to last
+	fmt.Println("Add => 12")
+	singlycircular.InsertEnd(&head, 12)
+	fmt.Println("Add => 14")
+	singlycircular.InsertEnd(&head, 14)
+	fmt.Println("Add => 16")
+	singlycircular.InsertEnd(&head, 16)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+
+	// traverse a list and print elements
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element before 14")
+	inserted, _ := singlycircular.InsertBefore(&head, 13, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 13, "before 14")
+	} else {
+		fmt.Println("Not Inserted")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element after 14")
+	inserted, _ = singlycircular.InsertAfter(&head, 15, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 15, "after 14")
+	} else {
+		fmt.Println("Not Inserted")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Searching elements")
+	fmt.Println("----------------------------------------")
+
+	fmt.Printf("Search 15: ")
+	found, nodeData := singlycircular.Find(head, 15)
+	if found {
+		fmt.Printf("Found %d\n", nodeData)
+	} else {
+		fmt.Printf("Not found!\n")
+	}
+	fmt.Printf("Search 20: ")
+	found, nodeData = singlycircular.Find(head, 20)
+	if found {
+		fmt.Printf("Found %d\n", nodeData)
+	} else {
+		fmt.Printf("Not found!\n")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from front: ")
+	fmt.Println("----------------------------------------")
+
+	deleted, data := singlycircular.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	deleted, data = singlycircular.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from end: ")
+	fmt.Println("----------------------------------------")
+	deleted, data = singlycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	deleted, data = singlycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting the elements randomly: ")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = singlycircular.Delete(&head, 12)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = singlycircular.Delete(&head, 12)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	singlycircular.TraverseList(head)
 	fmt.Println("----------------------------------------")
 }
