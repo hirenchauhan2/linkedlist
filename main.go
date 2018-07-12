@@ -3,16 +3,17 @@ package main
 import (
 	"fmt"
 
+	"github.com/hirenchauhan2/linkedlist/circular/doublycircular"
 	"github.com/hirenchauhan2/linkedlist/circular/singlycircular"
 	"github.com/hirenchauhan2/linkedlist/doubly"
 	"github.com/hirenchauhan2/linkedlist/singly"
 )
 
 func main() {
-	// singlyLinkedlistDemo()
-	// doublyLinkedlistDemo()
+	singlyLinkedlistDemo()
+	doublyLinkedlistDemo()
 	singlyCircularLinkedlistDemo()
-	// doublyCircularLinkedlistDemo()
+	doublyCircularLinkedlistDemo()
 }
 
 // singlyLinkedlistDemo demonstrate the Singly Linked list
@@ -500,5 +501,229 @@ func singlyCircularLinkedlistDemo() {
 	fmt.Println("Traversing the list...")
 	fmt.Println("----------------------------------------")
 	singlycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+}
+
+// doublyCircularLikedlistDemo demonstrate the Singly Circular linked list
+func doublyCircularLinkedlistDemo() {
+	fmt.Println("----------------------------------------")
+	fmt.Println("\tDoubly Circular Linkedlist Demo")
+	fmt.Println("----------------------------------------")
+
+	fmt.Println("Create a new Singly Circular Linkedlist")
+	fmt.Println("----------------------------------------")
+
+	// create a head node
+	head := doublycircular.Node{
+		Next: nil,
+	}
+
+	fmt.Println("Adding elements at beginning")
+	fmt.Println("----------------------------------------")
+
+	// add a node at front
+	fmt.Println("Add => 10")
+	doublycircular.InsertFront(&head, 10)
+	fmt.Println("Add => 8")
+	doublycircular.InsertFront(&head, 8)
+	fmt.Println("Add => 6")
+	doublycircular.InsertFront(&head, 6)
+	fmt.Println("Add => 4")
+	doublycircular.InsertFront(&head, 4)
+	fmt.Println("Add => 2")
+	doublycircular.InsertFront(&head, 2)
+	fmt.Println("Add => 0")
+	doublycircular.InsertFront(&head, 0)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	// traverse a list and print elements
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding elements at end")
+	fmt.Println("----------------------------------------")
+	// add node to last
+	fmt.Println("Add => 12")
+	doublycircular.InsertEnd(&head, 12)
+	fmt.Println("Add => 14")
+	doublycircular.InsertEnd(&head, 14)
+	fmt.Println("Add => 16")
+	doublycircular.InsertEnd(&head, 16)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+
+	// traverse a list and print elements
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element before 14")
+	inserted, err := doublycircular.InsertBefore(&head, 13, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 13, "before 14")
+	} else {
+		fmt.Println("Not Inserted", err)
+	}
+	fmt.Println("Adding element before 10")
+	inserted, err = doublycircular.InsertBefore(&head, 9, 10)
+	if inserted == 1 {
+		fmt.Println("Inserted", 9, "before 10")
+	} else {
+		fmt.Println("Not Inserted", err)
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Adding element 15 after 14")
+
+	inserted, _ = doublycircular.InsertAfter(&head, 15, 14)
+	if inserted == 1 {
+		fmt.Println("Inserted", 15, "after 14")
+	} else {
+		fmt.Println("Not Inserted")
+	}
+	fmt.Println("Adding element 11 after 10")
+
+	inserted, _ = doublycircular.InsertAfter(&head, 11, 10)
+	if inserted == 1 {
+		fmt.Println("Inserted", 11, "after 10")
+	} else {
+		fmt.Println("Not Inserted")
+	}
+	fmt.Println("----------------------------------------")
+	fmt.Println("Done adding elements")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Searching elements")
+	fmt.Println("----------------------------------------")
+
+	fmt.Printf("Search 15: ")
+	found, nodeData := doublycircular.Find(head, 15)
+	if found {
+		fmt.Printf("Found %d\n", nodeData)
+	} else {
+		fmt.Printf("Not found!\n")
+	}
+	fmt.Printf("Search 20: ")
+	found, nodeData = doublycircular.Find(head, 20)
+	if found {
+		fmt.Printf("Found %d\n", nodeData)
+	} else {
+		fmt.Printf("Not found!\n")
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from front: ")
+	fmt.Println("----------------------------------------")
+
+	deleted, data := doublycircular.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	deleted, data = doublycircular.DeleteFront(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting nodes from end: ")
+	fmt.Println("----------------------------------------")
+
+	deleted, data = doublycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	deleted, data = doublycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	deleted, data = doublycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	deleted, data = doublycircular.DeleteEnd(&head)
+	if deleted {
+		fmt.Println(data, "deleted successfully!")
+	} else {
+		fmt.Println("Empty list!")
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doublycircular.TraverseList(head)
+	fmt.Println("----------------------------------------")
+
+	fmt.Println("Deleting the elements randomly: ")
+	fmt.Println("----------------------------------------")
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = doublycircular.Delete(&head, 12)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("Deleting the element 12: ")
+
+	deleted, data = doublycircular.Delete(&head, 8)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("Deleting the element 10 ")
+
+	deleted, data = doublycircular.Delete(&head, 10)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("Deleting the element 6")
+
+	deleted, data = doublycircular.Delete(&head, 6)
+	if deleted {
+		fmt.Println(data, "Deleted successfully!")
+	} else {
+		fmt.Println("Could not found the node or the list is empty")
+	}
+
+	fmt.Println("----------------------------------------")
+	fmt.Println("Traversing the list...")
+	fmt.Println("----------------------------------------")
+	doublycircular.TraverseList(head)
 	fmt.Println("----------------------------------------")
 }
