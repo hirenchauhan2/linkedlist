@@ -14,7 +14,7 @@ type Node struct {
 	Next *Node
 }
 
-// InsertFront adds a node into the list at the end
+// InsertFront adds a node at front of the list
 func InsertFront(head *Node, data int) {
 	// fmt.Println("Doubly LinkedList -> InsertFront ", data)
 	// create a new node
